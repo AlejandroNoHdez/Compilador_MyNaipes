@@ -1,7 +1,9 @@
 //import analizadorLexico.AnalizadorLexico;
 //import analizadorLexico.Token;
 
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 import analizador.Analizador;
 import analizadorLexico.*; 
@@ -32,14 +34,6 @@ public class App
       {bet x; bet y; x = 10; y = 200 + x;}<EOF>
 
       {
-            bet x;
-            bet y;
-            x=5;
-            y=8;
-      }
-      <EOF>
-
-      {
             joker y; 
             y=false; 
             CLOVER(y)
@@ -49,5 +43,7 @@ public class App
       }
       <EOF>
 
+      C:\Users\nohbr\Downloads\prueba.txt
+      
       */
 } 

@@ -1,6 +1,9 @@
 package analizadorLexico;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Hashtable;
 
 import simbolos.*;
@@ -10,6 +13,11 @@ public class AnalizadorLexico
     public static int linea = 1;    //cuenta las lineas de entrada
     char preanalisis = ' ';         //guarda siguiente caracter de entrada
     Hashtable <String,Palabra>palabras = new Hashtable<String,Palabra>();//INICIA: Palabras reservadas
+    static int cont = 0;
+    static String dato = "", lectura;
+    static char [] datos;
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    BufferedReader archivos; 
     
     void reservar(Palabra w) 
     { 
@@ -34,8 +42,31 @@ public class AnalizadorLexico
     }                               //TERMIA: Palabras reservadas
 
     void readch() throws IOException 
-    { 
-        preanalisis = (char) System.in.read(); 
+    {
+        if(cont == 0)
+        {
+            while(!(lectura = br.readLine()).contains("<EOF>"))
+            {
+                if(lectura.contains(".txt")){
+                   archivos=new BufferedReader(new FileReader(lectura));
+                   while((lectura = archivos.readLine()) != null){
+                       dato=dato+lectura;
+                   }
+                   break;
+                }else{
+                    dato = dato + lectura;
+                }
+            }
+            if(!dato.contains("<EOF>")){
+                dato = dato + lectura;
+            }
+        }
+        datos = dato.toCharArray();
+        if(cont < datos.length)
+        {
+            preanalisis = datos[cont];
+            cont++;
+        }
     }
 
     boolean readch(char c) throws IOException 
