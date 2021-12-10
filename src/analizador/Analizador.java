@@ -11,6 +11,8 @@ public class Analizador {
 	private Token busca;
 	Ent sup = null;
 	int usado = 0;
+	String codintermmedio = null;
+	
 	public Analizador(AnalizadorLexico l) throws IOException { 
 		lex = l; mover(); 
 	}

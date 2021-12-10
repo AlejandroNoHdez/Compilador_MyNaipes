@@ -1,25 +1,12 @@
 //import analizadorLexico.AnalizadorLexico;
 //import analizadorLexico.Token;
 
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 import analizador.Analizador;
 import analizadorLexico.*; 
 public class App
 {
       public static void main(String[] args) throws Exception
       {
-            /*AnalizadorLexico al = new AnalizadorLexico();
-            do
-            {
-                  Token t = al.explorar();
-                  System.out.println(t.toString());
-            }
-            while(al.continuar());
-
-            System.out.write('\n');*/
             AnalizadorLexico lex = new AnalizadorLexico();
             Analizador analizar = new Analizador(lex);
             analizar.programa();
@@ -44,6 +31,6 @@ public class App
       <EOF>
 
       C:\Users\nohbr\Downloads\prueba.txt
-      
+
       */
 } 

@@ -16,6 +16,7 @@ public class AnalizadorLexico
     static int cont = 0;
     static String dato = "", lectura;
     static char [] datos;
+    static boolean flag=false;
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     BufferedReader archivos; 
     
@@ -41,25 +42,34 @@ public class AnalizadorLexico
         reservar(Palabra.ccbc);
     }                               //TERMIA: Palabras reservadas
 
+    public void bandera(String v){
+        flag=true;
+        lectura=v;
+    }
+    
     void readch() throws IOException 
     {
-        if(cont == 0)
-        {
-            while(!(lectura = br.readLine()).contains("<EOF>"))
+        if(flag){
+            dato=lectura;
+        }else{
+            if(cont == 0)
             {
-                if(lectura.contains(".txt")){
-                   archivos=new BufferedReader(new FileReader(lectura));
-                   while((lectura = archivos.readLine()) != null){
-                       dato=dato+lectura;
-                   }
-                   break;
-                }else{
+                while(!(lectura = br.readLine()).contains("<EOF>"))
+                {
+                    if(lectura.contains(".txt")){
+                       archivos=new BufferedReader(new FileReader(lectura));
+                       while((lectura = archivos.readLine()) != null){
+                           dato=dato+lectura;
+                       }
+                       break;
+                    }else{
+                        dato = dato + lectura;
+                    }
+                }
+                if(!dato.contains("<EOF>")){
                     dato = dato + lectura;
                 }
-            }
-            if(!dato.contains("<EOF>")){
-                dato = dato + lectura;
-            }
+            } 
         }
         datos = dato.toCharArray();
         if(cont < datos.length)
